@@ -1,0 +1,25 @@
+import math
+  2 MAX,MIN = 1000,-1000
+  3 def alphabeta(depth,idx,maximize,vals,alpha,beta):
+  4     if depth == int(math.log(len(vals),2)):
+  5         return values[idx]
+  6     if maximize:
+  7         best = MIN
+  8         for i in range(0,2):
+  9             val = alphabeta(depth+1,idx*2+i,False,vals,alpha,beta)
+ 10             best = max(best,val)
+ 11             if best < beta:
+ 12                 alpha = max(alpha,best)
+ 13             return best
+ 14     else :
+ 15         best = MAX
+ 16         for i in range(0,2):
+ 17             val = alphabeta(depth+1,idx*2 + i,True,vals,alpha,beta)
+ 18             best = min(best,val)
+ 19             if best > alpha:
+ 20                 beta = min(beta,best)
+ 21             return best
+ 22 if __name__ == "__main__":
+ 23     values = [3,5,6,9,1,2,0,-1]
+ 24     print(f"result: {alphabeta(0,0,True,values,MIN,MAX)}")
+~                                                                

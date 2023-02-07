@@ -1,0 +1,15 @@
+ import math
+  2 def minmax(tree,depth):
+  3     max_turn = bool(depth%2)
+  4     for i in range(depth):
+  5         zipped = zip(tree[::2],tree[1::2])
+  6         if max_turn:
+  7             tree = [max(a,b) for a,b in zipped]
+  8         else :
+  9             tree = [min(a,b) for a,b in zipped]
+ 10         max_turn = not max_turn
+ 11     return tree[0]
+ 12 A = [3,5,2,9,12,5,23,23]
+ 13 depth = int(math.ceil(math.log(len(A),2)))
+ 14 print(f"result:{minmax(A,depth)}")
+

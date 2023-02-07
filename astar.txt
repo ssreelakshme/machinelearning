@@ -1,0 +1,58 @@
+ class PQueue:
+  2     def __init__(self):
+  3         self.dict = {}
+  4         self.keys = []
+  5         self.sorted = False
+  6     def push(self,k,v):
+  7         self.dict[k] = v
+  8         self.sorted = False
+  9     def _sort(self):
+ 10         self.keys = sorted(self.dict,key = self.dict.get,reverse = True)
+ 11         self.sorted = True
+ 12     def pop(self):
+ 13         try:
+ 14             if not self.sorted:
+ 15                 self._sort()
+ 16             key = self.keys.pop()
+ 17             value = self.dict[key]
+ 18             self.dict.pop(key)
+ 19             return key,value
+ 20         except:
+ 21             return None
+ 22 def heuristics(path):
+ 23     h = {}
+ 24     with open(path,"r") as file:
+ 25         for line in file:
+ 26             k, v = line.split(", ")
+ 27             h[k] =int(v)
+ 28     return h
+ 29 def path_costs(path):
+ 30     c = {}
+ 31     with open(path,"r") as file:
+ 32         for line in file:
+ 33             line = line.split(", ")
+ 34             v = int(line.pop())
+ 35             e1 = line.pop()
+ 36             e2 = line.pop()
+ 37             if e1 not in c:
+ 38                 c[e1] = {}
+ 39             if e2 not in c:
+                c[e2] = {}
+ 41             c[e1][e2] = c[e2][e1] = v
+ 42     return c
+ 43 def a_star(start,goal,h,c):
+ 44     frontier = PQueue()
+ 45     frontier.push(start,h[start])
+ 46     while True:
+ 47         path, cost = frontier.pop()
+ 48         print(path + " " + str(cost))
+ 49         end = path.split("->")[-1]
+ 50         cost -= h[end]
+ 51         if goal == end :
+ 52             break
+ 53         for node,weight in c[end].items():
+ 54             new_cost = cost + weight + h[node]
+ 55             new_path = path + "->" + node
+ 56             frontier.push(new_path,new_cost)
+ 57 a_star('Arad','Bucharest',heuristics('/home/sreelakshmi/heuristics.txt'),path_costs('/home/sreelakshmi/path.txt'))
+-- INSERT --                                                                                                                :

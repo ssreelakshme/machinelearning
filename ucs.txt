@@ -1,0 +1,15 @@
+7 def ucs(start,goal,c):
+ 38     frontier = PQueue()
+ 39     frontier.push(start, 0)
+ 40     while True:
+ 41         path, cost = frontier.pop()
+ 42         print(path + "" + str(cost))
+ 43         end = path.split("->")[-1]
+ 44         if goal == end:
+ 45             break
+ 46         for node,weight in c[end].items():
+ 47             new_cost = cost + weight
+ 48             new_path = path + "->" + node
+ 49             frontier.push(new_path,new_cost)
+ 50 ucs('Arad','Bucharest',path_cost('/home/sreelakshmi/path.txt'))
+                                                                             

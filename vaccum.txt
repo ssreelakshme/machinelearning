@@ -1,0 +1,33 @@
+import random
+  2 def display(room):
+  3     print(room)
+  4 room = [[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]]
+  5 print("all the rooms are dirty")
+  6 display(room)
+  7 x = 0
+  8 y = 0
+  9 while(x<4):
+ 10     while(y < 4):
+ 11         room[x][y] = random.choice([0,1])
+ 12         y+=1
+ 13     x+=1
+ 14     y = 0
+ 15 print("before cleaning the room 1 detect dirt")
+ 16 display(room)
+ 17 x = 0
+ 18 y = 0
+ 19 z = 0
+ 20 while x < 4:
+ 21     while y < 4:
+ 22         if room[x][y] == 1:
+ 23             print("vaccum in location",x,y)
+ 24             room[x][y] = 0
+ 25             print("cleaned",x,y)
+ 26             z +=1
+ 27         y+=1
+ 28     x+=1
+ 29     y=0
+ 30     pro = (100-((z/16)*100))
+ 31     print("room is clean now")
+ 32     display(room)
+ 33     print("performance=",pro)

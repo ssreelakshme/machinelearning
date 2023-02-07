@@ -1,0 +1,33 @@
+ from collections import defaultdict
+  2     class Graph:
+  3         def __init__(self,v):
+  4             self.V = vertices
+  5             self.graph = defaultdict(list)
+  6         def addEdge(self,u,v):
+  7             self.graph[u].append(v)
+  8         def DLS(self,source,goal,maxdepth):
+  9             if source == goal:
+ 10                 return True
+ 11             if maxDepth <= 0:
+ 12                 return False
+ 13             for i in self.graph[source]:
+ 14                 if(self.DLS(i,goal,maxDepth-1)):
+ 15                     return True
+ 16             return False
+ 17     g = Graph(9)
+ 18     g.addEdge(0,1)
+ 19     g.addEdge(0,2)
+ 20     g.addEdge(1,3)
+ 21     g.addEdge(1,4)
+ 22     g.addEdge(2,5)
+ 23     g.addEdge(2,6)
+ 24     g.addEdge(3,7)
+ 25     g.addEdge(3,8)
+ 26     goal = 3
+ 27     maxDepth = 3
+ 28     source = 0
+ 29     if g.DLS(source,target,maxDepth) == True:
+ 30         print(f"Target{goal}is reachable from source{source} with max depth{maxDepth}")
+ 31     else:
+ 32         print(f"target{goal}is not reachable from source {source}with max depth{maxDepth}")
+~                                                                                                   

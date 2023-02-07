@@ -1,0 +1,45 @@
+ from collections import defaultdict
+  2 class Graph:
+  3     def __init__(self,vertices):
+  4         self.V = vertices
+  5         self.graph = defaultdict(list)
+  6     def addEdge(self,u,v):
+  7         self.graph[u].append(v)
+  8 def iddfs(start,goal,graph,limit):
+  9     if start == goal:
+ 10         return [start]
+ 11     if limit == 0:
+ 12         return None
+ 13     for neighbour in graph[start]:
+ 14         path = iddfs(neighbour,goal,graph,limit-1)
+ 15         if path is not None:
+ 16             return [start] + path
+ 17     return None
+ 18
+ 19 def run_iddfs(start,goal,graph):
+ 20     for depth in range(0,100):
+ 21         path = iddfs(start,goal,graph,depth)
+ 22         if path is not None:
+ 23             return path
+ 24     return None
+ 25
+ 26 if __name__ == "__main__":
+ 27     g = Graph(8)
+ 28     g.addEdge(0,1)
+ 29     g.addEdge(0,3)
+ 30     g.addEdge(1,2)
+ 31     g.addEdge(3,4)
+ 32     g.addEdge(4,7)
+ 33     g.addEdge(3,7)
+ 34     g.addEdge(4,6)
+ 35     g.addEdge(4,5)
+ 36     g.addEdge(6,5)
+ 37     g.addEdge(6,7)
+ 38     start = 0
+ 39     goal = 7
+    path_cost = run_iddfs(start,goal,g.graph)
+ 41     if path_cost is not None:
+ 42         print(path_cost)
+ 43     else:
+ 44         print("not reachable")
+-- INSERT --                              
